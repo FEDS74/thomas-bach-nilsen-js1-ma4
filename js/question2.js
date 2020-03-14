@@ -1,19 +1,19 @@
 const createGamesUrl = "https://api.rawg.io/api/games";
 
 fetch(createGamesUrl)
-  .then(function(response){
+  .then(function(response) {
     return response.json();
   })
-  .then(function(json){
-    creatGames(json);
+  .then(function(json) {
+    createGames(json);
   })
-  .catch(function(error){
+  .catch(function(error) {
     console.log(error);
   });
 
 
 
-function creatGames(json){
+function createGames(json) {
 
     const results = json.results;
     console.dir(results);
@@ -22,12 +22,11 @@ const resultsGamesContainer = document.querySelector(".results");
 
 let html = "";
 
-results.forEach(function(game) {
-
+results.forEach(function(result) {
   html += `<div class="game">
-              <h2>${game.name}</h2>
-              <img src="${game.background_image}" alt="${game.name}">
+              <h2>${result.name}</h2>
+              <img src="${result.background_image}" alt="${result.name}" width="400px">
            </div>`;
 });
-resultsGamesContainer.innerHtml = html;
+resultsGamesContainer.innerHTML = html;
 }
